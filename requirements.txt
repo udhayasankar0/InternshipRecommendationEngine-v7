@@ -1,0 +1,8 @@
+pandas
+numpy
+sentence-transformers
+joblib
+python-dateutil
+haversine
+torch
+rapidfuzz
