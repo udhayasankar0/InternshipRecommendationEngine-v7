@@ -97,23 +97,35 @@ def parse_date(date_str: str) -> Optional[str]:
 
 def score_stipend(job_stipend: Optional[float], min_stipend: Optional[float]) -> float:
     if job_stipend is None or min_stipend is None or min_stipend == 0:
-        return 0.5
+        return 50
     if job_stipend >= min_stipend:
-        return 1.0
-    ratio = job_stipend / min_stipend
-    return max(0.0, ratio)
+        return 100
+    ratio = (job_stipend / min_stipend) * 100
+    return max(0, ratio)
 
 def score_deadline(apply_by_date: Optional[str], available_from: Optional[str]) -> float:
     """
     Scores the internship based on its application deadline.
-    A missing deadline is treated as neutral (0.5).
+    A missing deadline is treated as neutral (50).
+    Returns a score from 0-100.
     """
-    # CORRECTED: Explicitly handle missing deadlines as neutral
     if not apply_by_date or pd.isna(apply_by_date) or not available_from:
-        return 0.5
+        return 50
     try:
         deadline = pd.to_datetime(apply_by_date)
         availability = pd.to_datetime(available_from)
-        return 1.0 if deadline >= availability else 0.0
+        
+        if deadline >= availability:
+            # Calculate days until deadline
+            days_until = (deadline - availability).days
+            if days_until > 30:  # More than a month
+                return 80
+            elif days_until > 14:  # More than 2 weeks
+                return 100
+            elif days_until > 7:  # More than a week
+                return 90
+            else:  # Less than a week
+                return 70
+        return 0
     except (ValueError, TypeError):
-        return 0.5 # Fallback for parsing errors```
+        return 50  # Fallback for parsing errors```

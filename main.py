@@ -16,7 +16,7 @@ from model_utils import (
     get_model, create_job_embeddings, create_skill_embeddings,
     create_user_embedding, get_semantic_scores
 )
-from explainers import generate_why_tags
+from explainers import generate_why_tags, generate_detailed_explanation
 import config
 
 def parse_location_field(loc_field):
@@ -175,9 +175,27 @@ if __name__ == '__main__':
     for i, rec in enumerate(recommendations):
         # Check for distance_km before formatting
         distance_str = f"{rec.get('distance_km'):.1f} km" if pd.notna(rec.get('distance_km')) else "N/A"
-        print(f"\n#{i+1}: {rec['role']} at {rec['company']} (Final Score: {rec['final_score']:.3f})")
-        print(f"  - Semantic:  {rec['semantic_score']:.2f} * {weights['semantic_score']} = {rec['semantic_score'] * weights['semantic_score']:.3f}")
-        print(f"  - Skills:    {rec['skill_overlap_ratio']:.2f} * {weights['skill_overlap_ratio']} = {rec['skill_overlap_ratio'] * weights['skill_overlap_ratio']:.3f}")
-        print(f"  - Location:  {rec['location_score']:.2f} * {weights['location_score']} = {rec['location_score'] * weights['location_score']:.3f} ({distance_str})")
-        print(f"  - Stipend:   {rec['stipend_score']:.2f} * {weights['stipend_score']} = {rec['stipend_score'] * weights['stipend_score']:.3f}")
-        print(f"  - Date:      {rec['date_score']:.2f} * {weights['date_score']} = {rec['date_score'] * weights['date_score']:.3f}")
+        detailed_explanation = generate_detailed_explanation(rec, user_profile, weights)
+        why_this_fits = detailed_explanation["why_this_fits"]
+        
+        print(f"\n#{i+1}: {rec['role']} at {rec['company']} (Total Score: {why_this_fits['total_score']}/100)")
+        print("\nWhy This Fits:")
+        print(f"  Semantic Match ({why_this_fits['semantic_match']['weight']}%):")
+        print(f"    Score: {why_this_fits['semantic_match']['score']}/100")
+        print(f"    {why_this_fits['semantic_match']['explanation']}")
+        
+        print(f"\n  Skills ({why_this_fits['skill_match']['weight']}%):")
+        print(f"    Score: {why_this_fits['skill_match']['score']}/100")
+        print(f"    {why_this_fits['skill_match']['explanation']}")
+        
+        print(f"\n  Location ({why_this_fits['location_match']['weight']}%):")
+        print(f"    Score: {why_this_fits['location_match']['score']}/100")
+        print(f"    {why_this_fits['location_match']['explanation']}")
+        
+        print(f"\n  Stipend ({why_this_fits['stipend_match']['weight']}%):")
+        print(f"    Score: {why_this_fits['stipend_match']['score']}/100")
+        print(f"    {why_this_fits['stipend_match']['explanation']}")
+        
+        print(f"\n  Deadline ({why_this_fits['deadline_match']['weight']}%):")
+        print(f"    Score: {why_this_fits['deadline_match']['score']}/100")
+        print(f"    {why_this_fits['deadline_match']['explanation']}")
