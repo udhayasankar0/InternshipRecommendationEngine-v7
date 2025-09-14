@@ -1,7 +1,13 @@
 {
-    "skills": ["Certificate"],
-    "qualification": "Civil Engineer",
-    "preferred_location": "Bangalore",
-    "min_stipend": 800000,
-    "available_from": "2025-09-15"
-  }
+        "skills": [
+            "python",
+            "data analysis",
+            "machine learning",
+            "sql",
+            "pandas"
+        ],
+        "qualification": "B.Tech in Computer Science",
+        "preferred_location": "Bangalore",
+        "min_stipend": 15000,
+        "available_from": "2025-09-20"
+    }

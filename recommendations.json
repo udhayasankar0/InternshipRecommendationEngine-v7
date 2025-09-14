@@ -1,0 +1,298 @@
+[
+  {
+    "recommendation_number": 1,
+    "basic_info": {
+      "id": "5f9fc213fb43357b9094a2c8",
+      "title": "Subject Expert For Creating Tutorials (Python)",
+      "company": "Coursechamps Internet Ventures Private Limited",
+      "location": "[\"Bangalore\", \"560001\"]",
+      "distance_km": 0.0,
+      "stipend": 18000.0,
+      "duration": "3 Months",
+      "deadline": null
+    },
+    "scoring": {
+      "total_score": 1187,
+      "semantic_match": {
+        "score": 37,
+        "weight": 50,
+        "weighted_score": 18,
+        "explanation": "Limited semantic match with your background"
+      },
+      "skill_match": {
+        "score": 20,
+        "weight": 20,
+        "weighted_score": 4,
+        "matched_skills": [
+          "python"
+        ],
+        "explanation": "Some relevant skills: python (exact)"
+      },
+      "location_match": {
+        "score": 100,
+        "weight": 15,
+        "weighted_score": 15,
+        "explanation": "Perfect location match in Bangalore (0.0 km)"
+      },
+      "stipend_match": {
+        "score": 10000,
+        "weight": 8,
+        "weighted_score": 800,
+        "explanation": "Meets your minimum stipend requirement: \u20b918,000"
+      },
+      "deadline_match": {
+        "score": 5000,
+        "weight": 7,
+        "weighted_score": 350,
+        "explanation": "No application deadline specified - position is open"
+      }
+    },
+    "matched_skills": [
+      "python"
+    ],
+    "tags": [
+      "Matches 1/5 skills: python (exact)",
+      "Location: Bangalore - 0.0 km away (score: 1.00)",
+      "Stipend \u20b918000 - meets your \u20b915000 min (score: 100.00)",
+      "Apply by: No deadline specified"
+    ]
+  },
+  {
+    "recommendation_number": 2,
+    "basic_info": {
+      "id": "5f9fc3c7fb43357b9094a497",
+      "title": "Big Data & Full Stack Software Development",
+      "company": "Tercept Incorporation",
+      "location": "[\"Bangalore\", \"560001\"]",
+      "distance_km": 0.0,
+      "stipend": 15000.0,
+      "duration": "3 Months",
+      "deadline": null
+    },
+    "scoring": {
+      "total_score": 1185,
+      "semantic_match": {
+        "score": 31,
+        "weight": 50,
+        "weighted_score": 16,
+        "explanation": "Limited semantic match with your background"
+      },
+      "skill_match": {
+        "score": 20,
+        "weight": 20,
+        "weighted_score": 4,
+        "matched_skills": [
+          "python"
+        ],
+        "explanation": "Some relevant skills: python (exact)"
+      },
+      "location_match": {
+        "score": 100,
+        "weight": 15,
+        "weighted_score": 15,
+        "explanation": "Perfect location match in Bangalore (0.0 km)"
+      },
+      "stipend_match": {
+        "score": 10000,
+        "weight": 8,
+        "weighted_score": 800,
+        "explanation": "Meets your minimum stipend requirement: \u20b915,000"
+      },
+      "deadline_match": {
+        "score": 5000,
+        "weight": 7,
+        "weighted_score": 350,
+        "explanation": "No application deadline specified - position is open"
+      }
+    },
+    "matched_skills": [
+      "python"
+    ],
+    "tags": [
+      "Matches 1/5 skills: python (exact)",
+      "Location: Bangalore - 0.0 km away (score: 1.00)",
+      "Stipend \u20b915000 - meets your \u20b915000 min (score: 100.00)",
+      "Apply by: No deadline specified"
+    ]
+  },
+  {
+    "recommendation_number": 3,
+    "basic_info": {
+      "id": "5f9fc31afb43357b9094a3de",
+      "title": "DevOps Engineering",
+      "company": "Sigmoid",
+      "location": "[\"Bangalore\", \"560001\"]",
+      "distance_km": 0.0,
+      "stipend": 15000.0,
+      "duration": "6 Months",
+      "deadline": null
+    },
+    "scoring": {
+      "total_score": 1181,
+      "semantic_match": {
+        "score": 24,
+        "weight": 50,
+        "weighted_score": 12,
+        "explanation": "Limited semantic match with your background"
+      },
+      "skill_match": {
+        "score": 20,
+        "weight": 20,
+        "weighted_score": 4,
+        "matched_skills": [
+          "python"
+        ],
+        "explanation": "Some relevant skills: python (exact)"
+      },
+      "location_match": {
+        "score": 100,
+        "weight": 15,
+        "weighted_score": 15,
+        "explanation": "Perfect location match in Bangalore (0.0 km)"
+      },
+      "stipend_match": {
+        "score": 10000,
+        "weight": 8,
+        "weighted_score": 800,
+        "explanation": "Meets your minimum stipend requirement: \u20b915,000"
+      },
+      "deadline_match": {
+        "score": 5000,
+        "weight": 7,
+        "weighted_score": 350,
+        "explanation": "No application deadline specified - position is open"
+      }
+    },
+    "matched_skills": [
+      "python"
+    ],
+    "tags": [
+      "Matches 1/5 skills: python (exact)",
+      "Location: Bangalore - 0.0 km away (score: 1.00)",
+      "Stipend \u20b915000 - meets your \u20b915000 min (score: 100.00)",
+      "Apply by: No deadline specified"
+    ]
+  },
+  {
+    "recommendation_number": 4,
+    "basic_info": {
+      "id": "5f9fc2f9fb43357b9094a3bc",
+      "title": "Data Science",
+      "company": "Ikshan Solutions Private Limited",
+      "location": "[\"Bangalore\", \"560001\"]",
+      "distance_km": 0.0,
+      "stipend": 10000.0,
+      "duration": "6 Months",
+      "deadline": null
+    },
+    "scoring": {
+      "total_score": 931,
+      "semantic_match": {
+        "score": 49,
+        "weight": 50,
+        "weighted_score": 25,
+        "explanation": "Moderate relevance to your profile"
+      },
+      "skill_match": {
+        "score": 40,
+        "weight": 20,
+        "weighted_score": 8,
+        "matched_skills": [
+          "sql",
+          "python"
+        ],
+        "explanation": "Some relevant skills: sql (exact), python (exact)"
+      },
+      "location_match": {
+        "score": 100,
+        "weight": 15,
+        "weighted_score": 15,
+        "explanation": "Perfect location match in Bangalore (0.0 km)"
+      },
+      "stipend_match": {
+        "score": 6667,
+        "weight": 8,
+        "weighted_score": 533,
+        "explanation": "Below your minimum stipend requirement: \u20b910,000 (67% of desired \u20b915,000)"
+      },
+      "deadline_match": {
+        "score": 5000,
+        "weight": 7,
+        "weighted_score": 350,
+        "explanation": "No application deadline specified - position is open"
+      }
+    },
+    "matched_skills": [
+      "sql",
+      "python"
+    ],
+    "tags": [
+      "Matches 2/5 skills: sql (exact), python (exact)",
+      "Location: Bangalore - 0.0 km away (score: 1.00)",
+      "Stipend \u20b910000 - below your \u20b915000 min (score: 66.67)",
+      "Apply by: No deadline specified"
+    ]
+  },
+  {
+    "recommendation_number": 5,
+    "basic_info": {
+      "id": "5f9fc373fb43357b9094a440",
+      "title": "Web Development",
+      "company": "Dioxe Technologies Private Limited",
+      "location": "[\"Bangalore\", \"560001\"]",
+      "distance_km": 0.0,
+      "stipend": 10000.0,
+      "duration": "6 Months",
+      "deadline": null
+    },
+    "scoring": {
+      "total_score": 927,
+      "semantic_match": {
+        "score": 33,
+        "weight": 50,
+        "weighted_score": 17,
+        "explanation": "Limited semantic match with your background"
+      },
+      "skill_match": {
+        "score": 60,
+        "weight": 20,
+        "weighted_score": 12,
+        "matched_skills": [
+          "machine learning",
+          "python",
+          "data analytics"
+        ],
+        "explanation": "Good skill overlap: machine learning (exact), python (exact), data analytics (fuzzy(88))"
+      },
+      "location_match": {
+        "score": 100,
+        "weight": 15,
+        "weighted_score": 15,
+        "explanation": "Perfect location match in Bangalore (0.0 km)"
+      },
+      "stipend_match": {
+        "score": 6667,
+        "weight": 8,
+        "weighted_score": 533,
+        "explanation": "Below your minimum stipend requirement: \u20b910,000 (67% of desired \u20b915,000)"
+      },
+      "deadline_match": {
+        "score": 5000,
+        "weight": 7,
+        "weighted_score": 350,
+        "explanation": "No application deadline specified - position is open"
+      }
+    },
+    "matched_skills": [
+      "machine learning",
+      "python",
+      "data analytics"
+    ],
+    "tags": [
+      "Matches 3/5 skills: machine learning (exact), python (exact), data analytics (fuzzy(88))",
+      "Location: Bangalore - 0.0 km away (score: 1.00)",
+      "Stipend \u20b910000 - below your \u20b915000 min (score: 66.67)",
+      "Apply by: No deadline specified"
+    ]
+  }
+]

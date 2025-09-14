@@ -153,49 +153,79 @@ if __name__ == '__main__':
     recommendations = recommend_internships(df, user_profile, model, job_embeddings, skill_embeddings, k=args.k, max_distance=args.max_distance_km)
     
     output_results = []
-    print("\n--- Top Recommendations ---")
-    for rec in recommendations:
-        output_results.append({
-            "id": rec['id'],
-            "title": rec['role'],
-            "company": rec['company'],
-            "location": rec['location'],
-            "stipend": rec['stipend_numeric'],
-            "duration": rec['Duration'],
-            "deadline": rec['deadline'],
-            "score": rec['final_score'],
-            "matched_skills": [m['skill'] for m in rec['skill_matches']],
-            "distance_km": rec.get('distance_km'),
-            "why": rec['why_tags'],
-        })
-    print(json.dumps(output_results, indent=2, default=str))
+    
+    print("\n" + "="*80)
+    print(" "*30 + "INTERNSHIP RECOMMENDATIONS")
+    print("="*80 + "\n")
 
-    print("\n--- DEBUG: Score Contribution Breakdown ---")
-    weights = config.SCORING_WEIGHTS
-    for i, rec in enumerate(recommendations):
-        # Check for distance_km before formatting
-        distance_str = f"{rec.get('distance_km'):.1f} km" if pd.notna(rec.get('distance_km')) else "N/A"
-        detailed_explanation = generate_detailed_explanation(rec, user_profile, weights)
+    for i, rec in enumerate(recommendations, 1):
+        detailed_explanation = generate_detailed_explanation(rec, user_profile, config.SCORING_WEIGHTS)
         why_this_fits = detailed_explanation["why_this_fits"]
+        distance = f"{rec.get('distance_km'):.1f} km" if pd.notna(rec.get('distance_km')) else "N/A"
+
+        # Human-readable section
+        print(f"\n📋 Recommendation #{i}")
+        print("─" * 50)
+        print(f"🎯 Role: {rec['role']}")
+        print(f"🏢 Company: {rec['company']}")
+        print(f"📍 Location: {rec['location']} (Distance: {distance})")
+        print(f"💰 Stipend: ₹{rec['stipend_numeric']:,}/month")
+        print(f"⏱️ Duration: {rec['Duration']}")
+        print(f"📅 Apply by: {rec['deadline']}")
+        print(f"✨ Overall Match Score: {why_this_fits['total_score']:.1f}/100")
         
-        print(f"\n#{i+1}: {rec['role']} at {rec['company']} (Total Score: {why_this_fits['total_score']}/100)")
-        print("\nWhy This Fits:")
-        print(f"  Semantic Match ({why_this_fits['semantic_match']['weight']}%):")
-        print(f"    Score: {why_this_fits['semantic_match']['score']}/100")
-        print(f"    {why_this_fits['semantic_match']['explanation']}")
+        print("\n📊 Scoring Breakdown:")
+        print("  • Semantic Match:  " + "█" * int(why_this_fits['semantic_match']['score']/5) + 
+              f" {why_this_fits['semantic_match']['score']:.1f}/100")
+        print("  • Skills Match:    " + "█" * int(why_this_fits['skill_match']['score']/5) + 
+              f" {why_this_fits['skill_match']['score']:.1f}/100")
+        print("  • Location Match:  " + "█" * int(why_this_fits['location_match']['score']/5) + 
+              f" {why_this_fits['location_match']['score']:.1f}/100")
+        print("  • Stipend Match:   " + "█" * int(why_this_fits['stipend_match']['score']/5) + 
+              f" {why_this_fits['stipend_match']['score']:.1f}/100")
+        print("  • Deadline Match:  " + "█" * int(why_this_fits['deadline_match']['score']/5) + 
+              f" {why_this_fits['deadline_match']['score']:.1f}/100")
+
+        print("\n🎯 Why This Matches Your Profile:")
+        print("  • " + why_this_fits['semantic_match']['explanation'])
+        print("  • " + why_this_fits['skill_match']['explanation'])
+        print("  • " + why_this_fits['location_match']['explanation'])
+        print("  • " + why_this_fits['stipend_match']['explanation'])
+        print("  • " + why_this_fits['deadline_match']['explanation'])
         
-        print(f"\n  Skills ({why_this_fits['skill_match']['weight']}%):")
-        print(f"    Score: {why_this_fits['skill_match']['score']}/100")
-        print(f"    {why_this_fits['skill_match']['explanation']}")
+        print("\n🔍 Matched Skills:")
+        matched_skills = [m['skill'] for m in rec['skill_matches']]
+        print("  • " + "\n  • ".join(matched_skills))
         
-        print(f"\n  Location ({why_this_fits['location_match']['weight']}%):")
-        print(f"    Score: {why_this_fits['location_match']['score']}/100")
-        print(f"    {why_this_fits['location_match']['explanation']}")
+        print("\n" + "─"*80 + "\n")
         
-        print(f"\n  Stipend ({why_this_fits['stipend_match']['weight']}%):")
-        print(f"    Score: {why_this_fits['stipend_match']['score']}/100")
-        print(f"    {why_this_fits['stipend_match']['explanation']}")
-        
-        print(f"\n  Deadline ({why_this_fits['deadline_match']['weight']}%):")
-        print(f"    Score: {why_this_fits['deadline_match']['score']}/100")
-        print(f"    {why_this_fits['deadline_match']['explanation']}")
+        # Store for JSON output
+        output_results.append({
+            "recommendation_number": i,
+            "basic_info": {
+                "id": rec['id'],
+                "title": rec['role'],
+                "company": rec['company'],
+                "location": rec['location'],
+                "distance_km": rec.get('distance_km'),
+                "stipend": rec['stipend_numeric'],
+                "duration": rec['Duration'],
+                "deadline": rec['deadline']
+            },
+            "scoring": {
+                "total_score": why_this_fits['total_score'],
+                "semantic_match": why_this_fits['semantic_match'],
+                "skill_match": why_this_fits['skill_match'],
+                "location_match": why_this_fits['location_match'],
+                "stipend_match": why_this_fits['stipend_match'],
+                "deadline_match": why_this_fits['deadline_match']
+            },
+            "matched_skills": matched_skills,
+            "tags": rec['why_tags']
+        })
+
+    # Save JSON output to file
+    json_output_path = "recommendations.json"
+    with open(json_output_path, 'w') as f:
+        json.dump(output_results, f, indent=2, default=str)
+    print(f"\n💾 Detailed recommendations have been saved to: {json_output_path}")
